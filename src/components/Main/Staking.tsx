@@ -15,6 +15,7 @@ import Ellipse from "@/assets/img/Ellipse 5.svg";
 import Ellipse2 from "@/assets/img/Ellipse 6.svg";
 import DogWalkerLogo from "@/assets/img/DogLogoWhite.svg";
 import StakingClaimRewardsButton from "@/assets/img/StakingClaimRewardsButton.svg";
+import { Dispatch, SetStateAction } from "react";
 
 import { useAccount } from "wagmi";
 import { toast } from "react-toastify";
@@ -37,8 +38,17 @@ import {
   useStaking,
   useUnStaking,
 } from "@/utils/useStakingContract";
-const Staking = ({
- 
+
+interface StakingProps {
+  setHasMinimumPurchased: Dispatch<SetStateAction<boolean>>;
+  hasMinimumPurchased: boolean;
+  setBalanceOf: Dispatch<SetStateAction<number>>;
+  balanceOf: number;
+}
+const Staking: React.FC<StakingProps> = ({
+  setHasMinimumPurchased: _setHasMinimumPurchased,
+  setBalanceOf: _setBalanceOf,
+  balanceOf: _balanceOf,
 }) => {
   const { t } = useTranslation("staking");
   // const web3 = new Web3("https://bsc-dataseed.binance.org/");
@@ -268,8 +278,7 @@ const Staking = ({
             <div className={classes.card}>
               <span className={classes.label}>{t("percentOfPoolLabel")}</span>
               <span className={classes.value}>
-                {Number(pctOfPool * 100).toFixed(2)}
-                % DWT
+                {Number(pctOfPool * 100).toFixed(2)}% DWT
               </span>
 
               <span className={classes.label}>{t("totalStakedLabel")}</span>
@@ -278,7 +287,7 @@ const Staking = ({
                 DWT
               </span>
 
-               <button
+              <button
                 className={classes.cta}
                 onClick={handleUnstake}
                 disabled={isUnStakingPending}
@@ -313,7 +322,7 @@ const Staking = ({
             <div className={classes.card}>
               <span className={classes.label}>{t("currentRewardsLabel")}</span>
               <span className={classes.value}>
-                 {Number(rewardsRemaining).toFixed(2)}{" "}
+                {Number(rewardsRemaining).toFixed(2)}{" "}
               </span>
               <div className={classes.logoWrapper}>
                 <Image src={DogWalkerLogo} alt="DogWalker" width={160} />
