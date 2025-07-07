@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "start:turbo": "next start --turbo -p 3100"
+    "start:turbo": "next dev --turbo --hostname 0.0.0.0 -p 3100"
   },
   "dependencies": {
     "@tanstack/query-core": "^5.81.5",
