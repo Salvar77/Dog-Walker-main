@@ -6,7 +6,8 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "start:turbo": "next start --turbo -p 3100"
   },
   "dependencies": {
     "@tanstack/query-core": "^5.81.5",
